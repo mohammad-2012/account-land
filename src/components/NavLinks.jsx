@@ -85,9 +85,7 @@ export default function NavLinks() {
               >
                 <link.icon
                   size={16}
-                  className={`transition-all duration-300 ${
-                    isActive ? "text-neon-cyan" : "group-hover:text-neon-cyan"
-                  }`}
+                  className={`transition-all duration-300`}
                   style={{
                     filter: isActive
                       ? "drop-shadow(0 0 4px var(--neon-cyan))"

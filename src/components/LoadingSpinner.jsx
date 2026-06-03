@@ -35,12 +35,6 @@ export default function LoadingSpinner() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-neon-cyan/20 to-neon-purple/20 backdrop-blur-sm" />
         </div>
 
-        <div className="flex gap-3">
-          <div className="w-2 h-2 rounded-full bg-neon-cyan animate-[bounce_1s_ease-in-out_infinite]" />
-          <div className="w-2 h-2 rounded-full bg-neon-purple animate-[bounce_1s_ease-in-out_0.15s_infinite]" />
-          <div className="w-2 h-2 rounded-full bg-neon-mint animate-[bounce_1s_ease-in-out_0.3s_infinite]" />
-        </div>
-
         <div className="flex gap-1">
           <span className="text-neon-cyan text-2xl animate-pulse leading-3">
             .

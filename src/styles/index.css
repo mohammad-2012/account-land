@@ -5,9 +5,9 @@
 @font-face {
   font-family: "tanha";
   src:
-    url("/Fonts/Tanha.woff2") format("woff2"),
-    url("/Fonts/Tanha.woff") format("woff"),
-    url("/Fonts/Tanha.ttf") format("truetype");
+    url("/public/Fonts/Tanha.woff2") format("woff2"),
+    url("/public/Fonts/Tanha.woff") format("woff"),
+    url("/public/Fonts/Tanha.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -45,6 +45,28 @@
   --neon-ice: #c3ffff;
   --neon-purple: #d9a7ff;
   --neon-silver: #b9c3ff;
+}
+
+@layer utilities {
+  .font-tanha {
+    font-family: "tanha", "Segoe UI", "Roboto", system-ui, sans-serif;
+  }
+  
+  .breakpoint-sm {
+    breakpoint: 576px;
+  }
+  .breakpoint-md {
+    breakpoint: 768px;
+  }
+  .breakpoint-lg {
+    breakpoint: 992px;
+  }
+  .breakpoint-xl {
+    breakpoint: 1200px;
+  }
+  .breakpoint-xxl {
+    breakpoint: 1400px;
+  }
 }
 
 *,

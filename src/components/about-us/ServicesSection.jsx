@@ -31,7 +31,7 @@ export default function ServicesSection({ isDarkMode, darkModeShadow }) {
             } border border-neon-cyan/20 hover:border-neon-cyan/50 transition-all duration-300`}
             style={{ boxShadow: darkModeShadow }}
           >
-            <div className="px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 text-neon-cyan">
+            <div className="px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 ">
               {service.badge}
             </div>
             <div className="text-left">

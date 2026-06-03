@@ -127,7 +127,7 @@ export default function PremiumTelegram({ products }) {
 
                   <div className="flex flex-col items-center mb-4">
                     <div
-                      className={`w-20 h-20 rounded-full  ${product.color} flex items-center justify-center  text-3xl mb-4 shadow-xl group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 relative before:absolute before:inset-0 before:rounded-full before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-300 after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-t  after:to-transparent`}
+                      className={`w-20 h-20 rounded-full flex items-center justify-center  text-3xl mb-4 shadow-xl group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 relative before:absolute before:inset-0 before:rounded-full before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-300 after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-t  after:to-transparent`}
                     >
                       <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-300">
                         {product.icon}

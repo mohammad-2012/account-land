@@ -1,4 +1,5 @@
 import { FaTelegramPlane } from "react-icons/fa";
+import accountImage from "/public/Images/account-land-image.webp";
 
 export default function MainImage({ isMobile }) {
   return (
@@ -16,7 +17,7 @@ export default function MainImage({ isMobile }) {
       </div>
 
       <img
-        src="/public/Images/account-land-image.webp"
+        src={accountImage}
         alt="Account Land"
         className={`relative object-contain drop-shadow-2xl ${
           isMobile
@@ -31,13 +32,6 @@ export default function MainImage({ isMobile }) {
             "https://placehold.co/650x650/0891b2/ffffff?text=Account+Land";
         }}
       />
-
-      {!isMobile && (
-        <>
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-cyan rounded-full animate-ping opacity-50" />
-          <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-purple rounded-full animate-ping opacity-50 delay-700" />
-        </>
-      )}
     </div>
   );
 }

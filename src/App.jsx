@@ -1,10 +1,16 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { Suspense, lazy, useEffect } from "react";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import AppLayout from "./components/AppLayout";
 import LoadingSpinner from "./components/LoadingSpinner";
 import PageNotFound from "./pages/PageNotFound";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import {
   FaRobot,
   FaGoogle,
@@ -14,12 +20,30 @@ import {
   FaTelegram,
 } from "react-icons/fa";
 
+import chatgptPlusImg from "/public/images/chatgpt-plus.png";
+import googleGeminiImg from "/public/images/google-ai-gemini.jpg";
+import telegramPremiumImg from "/public/Images/telegram-premium.jpg";
+
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const AiAccounts = lazy(() => import("./pages/AiAccounts"));
 const AiAccount = lazy(() => import("./pages/AiAccount"));
 const Support = lazy(() => import("./pages/Support"));
 const PremiumTelegram = lazy(() => import("./pages/PremiumTelegram"));
+
+function ScrollToTopOnNavigate() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   const products = [
@@ -28,7 +52,7 @@ export default function App() {
       category: "ai",
       name: "ChatGPT Plus",
       icon: <FaRobot className="text-5xl" style={{ color: "#10a37f" }} />,
-      image: "/public/images/chatgpt-plus.png",
+      image: chatgptPlusImg,
       price: "۵۸۰,۰۰۰",
       oldPrice: "۷۹۰,۰۰۰",
       badge: "پرفروش‌ترین",
@@ -50,7 +74,7 @@ export default function App() {
       category: "ai",
       name: "Google Gemini AI",
       icon: <FaGoogle className="text-5xl" style={{ color: "#4285f4" }} />,
-      image: "/public/images/google-ai-gemini.jpg",
+      image: googleGeminiImg,
       price: "۵۲۰,۰۰۰",
       oldPrice: "۶۹۰,۰۰۰",
       badge: "جدید و قدرتمند",
@@ -71,7 +95,7 @@ export default function App() {
       id: 3,
       category: "telegram",
       name: "پریمیوم ۱ ماهه",
-      image: "/public/Images/telegram-premium.jpg",
+      image: telegramPremiumImg,
       icon: <FaTelegram className="text-5xl" style={{ color: "#0088cc" }} />,
       price: "۱۲۹,۰۰۰",
       oldPrice: "۱۹۹,۰۰۰",
@@ -92,7 +116,7 @@ export default function App() {
       id: 4,
       category: "telegram",
       name: "پریمیوم ۳ ماهه",
-      image: "/public/Images/telegram-premium.jpg",
+      image: telegramPremiumImg,
       icon: <FaGem className="text-5xl" style={{ color: "#eab308" }} />,
       price: "۳۴۹,۰۰۰",
       oldPrice: "۵۹۷,۰۰۰",
@@ -113,7 +137,7 @@ export default function App() {
       id: 5,
       category: "telegram",
       name: "پریمیوم ۶ ماهه",
-      image: "/public/Images/telegram-premium.jpg",
+      image: telegramPremiumImg,
       icon: <FaBolt className="text-5xl" style={{ color: "#10b981" }} />,
       price: "۶۲۹,۰۰۰",
       oldPrice: "۱,۱۹۴,۰۰۰",
@@ -134,7 +158,7 @@ export default function App() {
       id: 6,
       category: "telegram",
       name: "پریمیوم ۱ ساله",
-      image: "/public/Images/telegram-premium.jpg",
+      image: telegramPremiumImg,
       icon: <FaTrophy className="text-5xl" style={{ color: "#f97316" }} />,
       price: "۹۹۹,۰۰۰",
       oldPrice: "۲,۳۸۸,۰۰۰",
@@ -158,7 +182,7 @@ export default function App() {
   return (
     <DarkModeProvider>
       <BrowserRouter>
-        <ScrollToTop />
+        <ScrollToTopOnNavigate />
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Navigate to="home" replace />} />
@@ -220,6 +244,7 @@ export default function App() {
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <ScrollToTopButton />
       </BrowserRouter>
     </DarkModeProvider>
   );
