@@ -161,7 +161,7 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<Navigate to="/home" replace />} />
+            <Route index element={<Navigate to="home" replace />} />
 
             <Route
               path="/home"
