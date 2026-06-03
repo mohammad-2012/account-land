@@ -1,11 +1,13 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: "tanha";
   src:
-    url("/public/Fonts/Tanha.woff2") format("woff2"),
-    url("/public/Fonts/Tanha.woff") format("woff"),
-    url("/public/Fonts/Tanha.ttf") format("truetype");
+    url("/Fonts/Tanha.woff2") format("woff2"),
+    url("/Fonts/Tanha.woff") format("woff"),
+    url("/Fonts/Tanha.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -45,16 +47,6 @@
   --neon-silver: #b9c3ff;
 }
 
-@theme {
-  --font-tanha: "tanha", "Segoe UI", "Roboto", system-ui, sans-serif;
-
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --breakpoint-xxl: 1400px;
-}
-
 *,
 *::before,
 *::after {
@@ -62,7 +54,7 @@
 }
 
 body {
-  font-family: var(--font-tanha);
+  font-family: "tanha", "Segoe UI", "Roboto", system-ui, sans-serif;
   background-color: var(--color-bg);
   color: var(--color-primary);
   margin: 0;
