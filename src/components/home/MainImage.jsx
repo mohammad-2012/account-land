@@ -16,7 +16,7 @@ export default function MainImage({ isMobile }) {
       </div>
 
       <img
-        src="/public/Images/account-land-image.webp"
+        src="/Images/account-land-image.webp"
         alt="Account Land"
         className={`relative object-contain drop-shadow-2xl ${
           isMobile
