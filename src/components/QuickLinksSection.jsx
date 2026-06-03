@@ -42,8 +42,8 @@ export default function QuickLinksSection({ currentPath, isDarkMode }) {
             const isActive = currentPath === item.path;
             return (
               <li key={index}>
-                <a
-                  href={item.path}
+                <NavLink
+                  to={item.path}
                   className="text-base md:text-sm transition-all duration-300 flex items-center justify-between group py-2 px-3 rounded-lg md:rounded-xl w-full"
                   style={{
                     color: isActive
@@ -76,7 +76,7 @@ export default function QuickLinksSection({ currentPath, isDarkMode }) {
                     className={`text-sm transition-all duration-300 ${isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"} group-hover:opacity-100 group-hover:translate-x-0 hidden md:inline-block`}
                   />
                   <span className="font-medium">{item.name}</span>
-                </a>
+                </NavLink>
               </li>
             );
           })}

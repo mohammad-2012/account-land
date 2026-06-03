@@ -181,7 +181,7 @@ export default function App() {
 
   return (
     <DarkModeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/account-land">
         <ScrollToTopOnNavigate />
         <Routes>
           <Route element={<AppLayout />}>
