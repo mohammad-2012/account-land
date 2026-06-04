@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useDarkMode } from "../context/DarkModeContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
   FiHome,
   FiInfo,
@@ -42,7 +42,7 @@ export default function MobileMenu() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="relative z-50 p-2 rounded-lg transition-all duration-300 md:hidden"
+          className="relative z-50 p-2 transition-all duration-300 rounded-lg md:hidden"
           style={{
             color: isDarkMode ? "var(--neon-cyan)" : "var(--neon-blue)",
           }}
@@ -101,7 +101,7 @@ export default function MobileMenu() {
                   setIsOpen(false);
                 }
               }}
-              className="p-2 rounded-lg transition-all duration-300"
+              className="p-2 transition-all duration-300 rounded-lg"
               style={{
                 color: isDarkMode ? "var(--neon-cyan)" : "var(--neon-blue)",
               }}
@@ -120,7 +120,7 @@ export default function MobileMenu() {
               >
                 {({ isActive }) => (
                   <div
-                    className="flex items-center justify-end gap-4 px-5 py-3 rounded-xl transition-all duration-300 w-full"
+                    className="flex items-center justify-end w-full gap-4 px-5 py-3 transition-all duration-300 rounded-xl"
                     style={{
                       backgroundColor: isActive
                         ? isDarkMode
@@ -144,6 +144,13 @@ export default function MobileMenu() {
                 )}
               </NavLink>
             ))}
+
+            <Link
+              to="/admin-login"
+              className="relative px-4 py-2 text-sm font-medium text-gray-500 transition-all duration-300 rounded-lg dark:text-gray-400 hover:text-neon-cyan dark:hover:text-neon-cyan after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-neon-cyan after:to-neon-purple after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+            >
+              ورود ادمین
+            </Link>
           </div>
         </div>
       )}
