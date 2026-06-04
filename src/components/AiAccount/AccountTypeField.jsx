@@ -3,7 +3,7 @@ import { FaInfoCircle } from "react-icons/fa";
 const AccountTypeField = ({ value }) => {
   return (
     <div>
-      <label className="block text-sm font-semibold text-heading mb-2">
+      <label className="block mb-2 text-sm font-semibold text-heading">
         <FaInfoCircle className="inline ml-1 text-neon-purple" />
         نوع اکانت
       </label>
@@ -12,7 +12,7 @@ const AccountTypeField = ({ value }) => {
         name="accountType"
         value={value}
         disabled
-        className="w-full px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 border border-neon-cyan/30 text-muted cursor-not-allowed"
+        className="w-full px-4 py-2 bg-gray-100 border cursor-not-allowed rounded-xl border-neon-cyan/30 text-muted"
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import { FiArrowRight } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
 
 const NavItems = [
   { name: "خانه", path: "/home" },
