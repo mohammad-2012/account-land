@@ -29,6 +29,12 @@ export default function Header() {
           <div className="items-center hidden gap-2 md:flex">
             <NavLinks />
             <ThemeToggle />
+            <Link
+              to="/admin-login"
+              className="relative px-4 py-2 text-sm font-medium text-gray-500 transition-all duration-300 rounded-lg dark:text-gray-400 hover:text-neon-cyan dark:hover:text-neon-cyan after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-neon-cyan after:to-neon-purple after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+            >
+              ورود ادمین
+            </Link>
           </div>
 
           <div className="flex items-center gap-3 md:hidden">
