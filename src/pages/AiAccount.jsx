@@ -165,10 +165,10 @@ export default function AiAccount({ products }) {
     <div className="min-h-screen pt-6 pb-4" dir="rtl">
       <Background isDarkMode={isDarkMode} />
 
-      <div className="container mx-auto  max-w-5xl">
+      <div className="container max-w-5xl mx-auto">
         <BackButton />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           <MainContent
             product={product}
             isGemini={isGemini}

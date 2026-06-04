@@ -12,7 +12,7 @@ const AccountTypeField = ({ value }) => {
         name="accountType"
         value={value}
         disabled
-        className="w-full px-4 py-2 bg-gray-100 border cursor-not-allowed rounded-xl border-neon-cyan/30 text-muted"
+        className="w-full px-4 py-2 border cursor-not-allowed rounded-xl border-neon-cyan/30 text-muted"
       />
     </div>
   );

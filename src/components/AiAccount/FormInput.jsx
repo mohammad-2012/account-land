@@ -1,10 +1,10 @@
 import { FaUser, FaPhone, FaTelegram, FaEnvelope } from "react-icons/fa";
 
 const iconMap = {
-  FaUser: <FaUser className="text-neon-cyan text-sm sm:text-base" />,
-  FaPhone: <FaPhone className="text-neon-cyan text-sm sm:text-base" />,
+  FaUser: <FaUser className="text-sm text-neon-cyan sm:text-base" />,
+  FaPhone: <FaPhone className="text-sm text-neon-cyan sm:text-base" />,
   FaTelegram: <FaTelegram className="text-[#0088cc] text-sm sm:text-base" />,
-  FaEnvelope: <FaEnvelope className="text-neon-cyan text-sm sm:text-base" />,
+  FaEnvelope: <FaEnvelope className="text-sm text-neon-cyan sm:text-base" />,
 };
 
 const FormInput = ({
@@ -22,9 +22,9 @@ const FormInput = ({
   return (
     <div className="w-full">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1.5 gap-1">
-        <label className="text-xs sm:text-sm font-medium text-heading">
+        <label className="text-xs font-medium sm:text-sm text-heading">
           {label}
-          {required && <span className="text-red-500 mr-1">*</span>}
+          {required && <span className="mr-1 text-red-500">*</span>}
         </label>
         {optionalText && (
           <span className="text-[10px] sm:text-xs text-muted">
@@ -33,7 +33,7 @@ const FormInput = ({
         )}
       </div>
       <div className="relative">
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted">
+        <div className="absolute transform -translate-y-1/2 right-3 top-1/2 text-muted">
           {iconMap[icon]}
         </div>
         <input

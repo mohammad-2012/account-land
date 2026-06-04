@@ -51,7 +51,7 @@
   .font-tanha {
     font-family: "tanha", "Segoe UI", "Roboto", system-ui, sans-serif;
   }
-  
+
   .breakpoint-sm {
     breakpoint: 576px;
   }
@@ -432,4 +432,19 @@ button {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out;
 }

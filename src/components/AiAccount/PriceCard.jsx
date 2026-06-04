@@ -33,12 +33,12 @@ const PriceCard = ({ product, isGemini }) => {
     <>
       <div>
         <div
-          className="rounded-2xl p-6 backdrop-blur-sm border border-neon-cyan/20 sticky top-24"
+          className="sticky p-6 border rounded-2xl backdrop-blur-sm border-neon-cyan/20 top-24"
           style={{ boxShadow: darkModeShadow }}
         >
-          <div className="text-center mb-6">
-            <div className="text-sm text-muted mb-2">قیمت ویژه</div>
-            <div className="text-4xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text  ">
+          <div className="mb-6 text-center">
+            <div className="mb-2 text-sm text-muted">قیمت ویژه</div>
+            <div className="text-4xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text ">
               {product.price}
             </div>
             {isGemini && (
@@ -46,12 +46,12 @@ const PriceCard = ({ product, isGemini }) => {
                 <span className="text-xs line-through text-muted">
                   ۱,۱۵۰,۰۰۰ تومان
                 </span>
-                <span className="text-xs text-red-500 mr-2">تخفیف ویژه</span>
+                <span className="mr-2 text-xs text-red-500">تخفیف ویژه</span>
               </div>
             )}
           </div>
 
-          <div className="space-y-3 mb-6">
+          <div className="mb-6 space-y-3">
             <InfoItem
               icon="FaCheckCircle"
               text="فعال‌سازی روی ایمیل شخصی شما"
@@ -104,7 +104,7 @@ const PriceCard = ({ product, isGemini }) => {
             </button>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-neon-cyan/20 text-center">
+          <div className="pt-4 mt-6 text-center border-t border-neon-cyan/20">
             <div className="flex items-center justify-center gap-1 text-xs text-muted">
               <FaClock className="text-neon-cyan" />
               <span>تحویل فوری پس از پرداخت</span>
@@ -113,7 +113,7 @@ const PriceCard = ({ product, isGemini }) => {
         </div>
       </div>
 
-      <div ref={formRef} className="w-full flex justify-center mt-8">
+      <div ref={formRef} className="flex justify-center w-full mt-8">
         <div className="w-full max-w-4xl">
           <CheckoutForm product={product} isVisible={showForm} />
         </div>

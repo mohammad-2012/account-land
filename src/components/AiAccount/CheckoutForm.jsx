@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 import AccountTypeField from "./AccountTypeField";
 import NoticeBox from "./NoticeBox";
 import SubmitButton from "./SubmitButton";
- 
+
 const CheckoutForm = ({ product, isVisible }) => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -14,7 +14,16 @@ const CheckoutForm = ({ product, isVisible }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notification, setNotification] = useState({
+    show: false,
+    message: "",
+    type: "",
+  });
   const formRef = useRef(null);
+
+  const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+  const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
   useEffect(() => {
     if (isVisible && formRef.current) {
@@ -26,6 +35,19 @@ const CheckoutForm = ({ product, isVisible }) => {
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   }, [isVisible]);
+
+  useEffect(() => {
+    if (notification.show) {
+      const timer = setTimeout(() => {
+        setNotification({ show: false, message: "", type: "" });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification.show]);
+
+  const showNotification = (message, type = "success") => {
+    setNotification({ show: true, message, type });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,15 +73,80 @@ const CheckoutForm = ({ product, isVisible }) => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const sendToTelegram = async (data) => {
+    const message =
+      `🛍 *درخواست خرید جدید* 🛍\n\n` +
+      `👤 *نام:* ${data.fullName}\n` +
+      `📦 *نوع اکانت:* ${data.accountType}\n` +
+      `📱 *موبایل:* ${data.phone || "وارد نشده"}\n` +
+      `💬 *تلگرام:* ${data.telegramId}\n` +
+      `✉️ *ایمیل:* ${data.email}\n` +
+      `🕐 *زمان:* ${new Date().toLocaleString("fa-IR")}`;
+
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: "Markdown",
+        }),
+      });
+
+      const result = await response.json();
+      return result.ok;
+    } catch (error) {
+      console.error("خطا در ارسال به تلگرام:", error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      showNotification("لطفاً تمام فیلدهای required را پر کنید", "error");
       return;
     }
-    console.log("فرم خرید:", formData);
-    alert("درخواست شما ثبت شد. برای ادامه خرید به تلگرام مراجعه کنید.");
+
+    setIsSubmitting(true);
+
+    try {
+      const sent = await sendToTelegram(formData);
+      if (sent) {
+        console.log("فرم خرید:", formData);
+        showNotification(
+          "✅ درخواست شما با موفقیت ثبت شد! به زودی در تلگرام به شما پیام داده خواهد شد. از انتخاب شما مچکریم.",
+          "success",
+        );
+        setFormData({
+          fullName: "",
+          accountType: product?.name || "",
+          phone: "",
+          telegramId: "",
+          email: "",
+        });
+      } else {
+        showNotification(
+          "❌ خطا در ثبت درخواست. لطفاً با وی پی ان دوباره تلاش کنید.",
+          "error",
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      showNotification(
+        "❌ خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.",
+        "error",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isVisible) return null;
@@ -67,18 +154,36 @@ const CheckoutForm = ({ product, isVisible }) => {
   return (
     <div
       ref={formRef}
-      className="w-full mt-6 sm:mt-8 animate-fadeInUp scroll-mt-24 px-4 sm:px-0"
+      className="relative w-full px-4 mt-6 sm:mt-8 animate-fadeInUp scroll-mt-24 sm:px-0"
       id="checkoutForm"
     >
-      <div className="w-full max-w-4xl mx-auto rounded-xl sm:rounded-2xl p-4 sm:p-6 backdrop-blur-sm border-2 border-neon-cyan/30 bg-gradient-to-br from-neon-cyan/5 to-neon-purple/5">
-        <div className="text-center mb-4 sm:mb-6">
+      {notification.show && (
+        <div
+          className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 animate-fadeInUp ${
+            notification.type === "success"
+              ? "bg-gradient-to-r from-green-500 to-emerald-600"
+              : "bg-gradient-to-r from-red-500 to-rose-600"
+          } text-white px-6 py-3 rounded-xl shadow-2xl backdrop-blur-sm font-bold text-sm sm:text-base`}
+          style={{
+            boxShadow:
+              notification.type === "success"
+                ? "0 0 20px rgba(34,197,94,0.5)"
+                : "0 0 20px rgba(239,68,68,0.5)",
+          }}
+        >
+          {notification.message}
+        </div>
+      )}
+
+      <div className="w-full max-w-4xl p-4 mx-auto border-2 rounded-xl sm:rounded-2xl sm:p-6 backdrop-blur-sm border-neon-cyan/30 bg-gradient-to-br from-neon-cyan/5 to-neon-purple/5">
+        <div className="mb-4 text-center sm:mb-6">
           <h3
             style={{ color: "var(--neon-cyan)" }}
-            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent"
+            className="text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text"
           >
             تکمیل درخواست خرید
           </h3>
-          <p className="text-xs sm:text-sm text-muted mt-2">
+          <p className="mt-2 text-xs sm:text-sm text-muted">
             لطفا اطلاعات خود را دقیق وارد کنید
           </p>
         </div>
@@ -120,6 +225,7 @@ const CheckoutForm = ({ product, isVisible }) => {
             placeholder="مثال: @myusername"
             icon="FaTelegram"
             required
+            inputClassName="text-left ltr"
           />
 
           <FormInput
@@ -132,11 +238,12 @@ const CheckoutForm = ({ product, isVisible }) => {
             placeholder="example@gmail.com"
             icon="FaEnvelope"
             required
+            inputClassName="text-left ltr"
           />
 
           <NoticeBox />
 
-          <SubmitButton />
+          <SubmitButton isSubmitting={isSubmitting} />
         </form>
       </div>
     </div>
