@@ -46,7 +46,7 @@ export default function QuickLinksSection({ isDarkMode }) {
                 className={({ isActive }) =>
                   `flex items-center justify-between w-full px-3 py-2 text-base transition-all duration-300 rounded-lg md:text-sm group md:rounded-xl ${
                     isActive
-                      ? "text-neon-cyan bg-neon-cyan/10 border border-neon-cyan font-bold"
+                      ? "  bg-neon-cyan/10 border border-neon-cyan font-bold"
                       : "text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5"
                   }`
                 }
