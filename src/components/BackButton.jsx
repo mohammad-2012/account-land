@@ -16,9 +16,9 @@ const BackButton = () => {
     <div className="mb-6">
       <button
         onClick={handleBack}
-        className="group flex items-center gap-2 text-neon-cyan hover:text-neon-purple transition-all duration-300 cursor-pointer"
+        className="flex items-center gap-2 transition-all duration-300 cursor-pointer group "
       >
-        <FaArrowRight className="text-sm group-hover:-translate-x-1 transition-transform duration-300" />
+        <FaArrowRight className="text-sm transition-transform duration-300 group-hover:-translate-x-1" />
         <span className="text-sm font-medium">بازگشت به لیست محصولات</span>
       </button>
     </div>

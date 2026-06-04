@@ -9,12 +9,12 @@ const NavItems = [
   { name: "تماس با ما", path: "/contact" },
 ];
 
-export default function QuickLinksSection({ currentPath, isDarkMode }) {
+export default function QuickLinksSection({ isDarkMode }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <div
-      className="text-right md:bg-transparent md:p-0 md:border-none md:shadow-none rounded-2xl p-5 transition-all duration-300"
+      className="p-5 text-right transition-all duration-300 md:bg-transparent md:p-0 md:border-none md:shadow-none rounded-2xl"
       style={{
         backgroundColor: isMobile
           ? isDarkMode
@@ -39,48 +39,33 @@ export default function QuickLinksSection({ currentPath, isDarkMode }) {
           لینک‌های سریع
         </h3>
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-1">
-          {NavItems.map((item, index) => {
-            const isActive = currentPath === item.path;
-            return (
-              <li key={index}>
-                <NavLink
-                  to={item.path}
-                  className="text-base md:text-sm transition-all duration-300 flex items-center justify-between group py-2 px-3 rounded-lg md:rounded-xl w-full"
-                  style={{
-                    color: isActive
-                      ? "var(--neon-cyan)"
-                      : "var(--color-secondary)",
-                    backgroundColor: isActive
-                      ? isDarkMode
-                        ? "rgba(0,242,255,0.1)"
-                        : "rgba(0,180,216,0.05)"
-                      : "transparent",
-                    border: isActive ? "1px solid var(--neon-cyan)" : "none",
-                    fontWeight: isActive ? "bold" : "normal",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = "var(--neon-cyan)";
-                      e.currentTarget.style.backgroundColor = isDarkMode
-                        ? "rgba(0,242,255,0.05)"
-                        : "rgba(0,180,216,0.03)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = "var(--color-secondary)";
-                      e.currentTarget.style.backgroundColor = "transparent";
-                    }
-                  }}
-                >
-                  <FiArrowRight
-                    className={`text-sm transition-all duration-300 ${isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"} group-hover:opacity-100 group-hover:translate-x-0 hidden md:inline-block`}
-                  />
-                  <span className="font-medium">{item.name}</span>
-                </NavLink>
-              </li>
-            );
-          })}
+          {NavItems.map((item, index) => (
+            <li key={index}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center justify-between w-full px-3 py-2 text-base transition-all duration-300 rounded-lg md:text-sm group md:rounded-xl ${
+                    isActive
+                      ? "text-neon-cyan bg-neon-cyan/10 border border-neon-cyan font-bold"
+                      : "text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5"
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <FiArrowRight
+                      className={`text-sm transition-all duration-300 hidden md:inline-block ${
+                        isActive
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      }`}
+                    />
+                    <span className="font-medium">{item.name}</span>
+                  </>
+                )}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

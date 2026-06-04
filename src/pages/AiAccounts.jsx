@@ -13,7 +13,7 @@ export default function AiAccounts({ products }) {
     <div className="min-h-screen pt-4" dir="rtl">
       <Background isDarkMode={isDarkMode} />
 
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container max-w-5xl px-4 mx-auto">
         <PageHeader />
         <ProductsGrid
           products={products}

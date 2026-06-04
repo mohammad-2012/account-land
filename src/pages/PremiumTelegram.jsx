@@ -71,26 +71,26 @@ export default function PremiumTelegram({ products }) {
     <div className="min-h-screen pt-8" dir="rtl">
       <Background isDarkMode={isDarkMode} />
 
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-10">
+      <div className="container max-w-6xl px-4 mx-auto">
+        <div className="mb-10 text-center">
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-[#0088cc] to-[#26a5e4] mb-5 shadow-2xl animate-pulse">
             <FaTelegram className="text-5xl text-white" />
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-[#0088cc] via-[#26a5e4] to-[#00aaff] bg-clip-text">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-[#0088cc] via-[#26a5e4] to-[#00aaff] bg-clip-text text-transparent">
             تلگرام پریمیوم
           </h1>
 
-          <p className="text-secondary text-lg max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-lg text-secondary">
             تجربه‌ای متفاوت از پیام‌رسان محبوب با امکانات ویژه و سرعت بی‌نظیر
           </p>
 
           <div className="w-24 h-1 bg-gradient-to-r from-[#0088cc] to-[#26a5e4] mx-auto mt-5 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+        <div className="grid grid-cols-2 gap-4 mb-12 md:grid-cols-3 lg:grid-cols-6">
           {benefits.map((benefit, idx) => (
-            <div key={idx} className="product-card text-center p-3 group">
+            <div key={idx} className="p-3 text-center product-card group">
               <div className="text-[var(--color-cta)] mb-2 flex justify-center group-hover:scale-110 transition-transform">
                 {benefit.icon}
               </div>
@@ -102,7 +102,7 @@ export default function PremiumTelegram({ products }) {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 gap-6 mb-12 md:grid-cols-2 lg:grid-cols-4">
           {telegramProducts.map((product) => (
             <div
               key={product.id}
@@ -110,11 +110,11 @@ export default function PremiumTelegram({ products }) {
               style={{ animationDelay: `${product.id * 100}ms` }}
             >
               <div
-                className="rounded-2xl transition-all duration-300 hover:transform hover:-translate-y-2 overflow-hidden h-full relative"
+                className="relative h-full overflow-hidden transition-all duration-300 rounded-2xl hover:transform hover:-translate-y-2"
                 style={{ boxShadow: darkModeShadow }}
               >
                 <div className="absolute top-3 right-3 z-20 bg-gradient-to-r from-[#0088cc] to-[#26a5e4] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
-                  <FaGem className="text-yellow-300 text-xs" />
+                  <FaGem className="text-xs text-yellow-300" />
                   {product.badge}
                 </div>
 
@@ -127,19 +127,17 @@ export default function PremiumTelegram({ products }) {
 
                   <div className="flex flex-col items-center mb-4">
                     <div
-                      className={`w-20 h-20 rounded-full flex items-center justify-center  text-3xl mb-4 shadow-xl group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 relative before:absolute before:inset-0 before:rounded-full before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-300 after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-t  after:to-transparent`}
+                      className={`w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-4 shadow-xl group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 relative bg-gradient-to-br from-[#0088cc]/20 to-[#26a5e4]/20`}
                     >
-                      <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-300">
-                        {product.icon}
-                      </div>
+                      <FaTelegram className="text-4xl text-[#0088cc]" />
                     </div>
 
-                    <h2 className="text-xl font-bold text-heading text-center">
+                    <h2 className="text-xl font-bold text-center text-heading">
                       {product.name}
                     </h2>
                   </div>
 
-                  <div className="text-center mb-4">
+                  <div className="mb-4 text-center">
                     <div className="text-3xl font-bold text-[var(--color-cta)]">
                       {product.price}
                       <span className="text-sm text-muted"> تومان</span>
@@ -147,12 +145,12 @@ export default function PremiumTelegram({ products }) {
 
                     {product.oldPrice && (
                       <>
-                        <div className="text-sm text-muted line-through">
+                        <div className="text-sm line-through text-muted">
                           {product.oldPrice} تومان
                         </div>
 
                         {getDiscount(product.price, product.oldPrice) > 0 && (
-                          <div className="text-xs text-green-500 mt-1">
+                          <div className="mt-1 text-xs text-green-500">
                             {getDiscount(product.price, product.oldPrice)}%
                             تخفیف
                           </div>
@@ -167,7 +165,7 @@ export default function PremiumTelegram({ products }) {
                         key={idx}
                         className="flex items-center gap-2 text-sm"
                       >
-                        <FaCheckCircle className="text-green-500 text-xs flex-shrink-0" />
+                        <FaCheckCircle className="flex-shrink-0 text-xs text-green-500" />
                         <span className="text-secondary">{feature}</span>
                       </div>
                     ))}
@@ -189,31 +187,31 @@ export default function PremiumTelegram({ products }) {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="product-card text-center p-6">
-            <div className="w-14 h-14 rounded-full bg-blue-500/10 flex items-center justify-center mx-auto mb-3">
+        <div className="grid grid-cols-1 gap-6 mb-12 md:grid-cols-3">
+          <div className="p-6 text-center product-card">
+            <div className="flex items-center justify-center mx-auto mb-3 rounded-full w-14 h-14 bg-blue-500/10">
               <FaShieldAlt className="text-2xl text-blue-500" />
             </div>
-            <h4 className="font-bold text-heading mb-2">امنیت بالا</h4>
+            <h4 className="mb-2 font-bold text-heading">امنیت بالا</h4>
             <p className="text-sm text-secondary">
               بدلیل فعالسازی اشتراک ها روی اکانت های خودتون این اشتراک ها از
               امنیت بالایی برخوردار هستند.
             </p>
           </div>
-          <div className="product-card text-center p-6">
-            <div className="w-14 h-14 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-3">
+          <div className="p-6 text-center product-card">
+            <div className="flex items-center justify-center mx-auto mb-3 rounded-full w-14 h-14 bg-green-500/10">
               <FaClock className="text-2xl text-green-500" />
             </div>
-            <h4 className="font-bold text-heading mb-2">تحویل فوری</h4>
+            <h4 className="mb-2 font-bold text-heading">تحویل فوری</h4>
             <p className="text-sm text-secondary">
               بلافاصله پس از پرداخت، اکانت فعال می‌شود
             </p>
           </div>
-          <div className="product-card text-center p-6">
-            <div className="w-14 h-14 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-3">
+          <div className="p-6 text-center product-card">
+            <div className="flex items-center justify-center mx-auto mb-3 rounded-full w-14 h-14 bg-purple-500/10">
               <FaHeadset className="text-2xl text-purple-500" />
             </div>
-            <h4 className="font-bold text-heading mb-2">پشتیبانی ۲۴ ساعته</h4>
+            <h4 className="mb-2 font-bold text-heading">پشتیبانی ۲۴ ساعته</h4>
             <p className="text-sm text-secondary">
               تیم پشتیبانی همیشه در دسترس شماست
             </p>

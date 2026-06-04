@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import ThemeToggle from "./ThemeToggle";
 import MobileMenu from "./MobileMenu";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { isDarkMode } = useDarkMode();
@@ -22,10 +23,10 @@ export default function Header() {
           borderBottom: `1px solid ${isDarkMode ? "rgba(0, 242, 255, 0.2)" : "rgba(0, 180, 216, 0.3)"}`,
         }}
       >
-        <div className="flex items-center justify-between max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4">
+        <div className="flex items-center justify-between px-4 py-3 mx-auto max-w-7xl md:px-6 md:py-4">
           <Logo />
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="items-center hidden gap-2 md:flex">
             <NavLinks />
             <ThemeToggle />
           </div>
